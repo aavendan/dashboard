@@ -9,7 +9,7 @@ import AlertUI from './components/AlertUI';
 import SelectorUI from './components/SelectorUI';
 import IndicatorUI from './components/IndicatorUI';
 
-import DataFetcher from './hooks/DataFetcher';
+import DataFetcher from './functions/DataFetcher';
 
 
 function App() {
