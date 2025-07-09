@@ -8,6 +8,8 @@ import HeaderUI from './components/HeaderUI';
 import AlertUI from './components/AlertUI';
 import SelectorUI from './components/SelectorUI';
 import IndicatorUI from './components/IndicatorUI';
+import TableUI from './components/TableUI';
+import ChartUI from './components/ChartUI';
 
 import DataFetcher from './functions/DataFetcher';
 
@@ -76,10 +78,10 @@ function App() {
       </Grid>
 
       {/* Gráfico */}
-      <Grid size={{ xs: 6, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}>Elemento: Gráfico</Grid>
+      <Grid size={{ xs: 6, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}><ChartUI /></Grid>
 
       {/* Tabla */}
-      <Grid size={{ xs: 6, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}>Elemento: Tabla</Grid>
+      <Grid size={{ xs: 6, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}><TableUI /></Grid>
 
       {/* Información adicional */}
       <Grid size={{ xs: 12, md: 12 }}>Elemento: Información adicional</Grid>
