@@ -14,10 +14,12 @@ import ChartUI from './components/ChartUI';
 import DataFetcher from './functions/DataFetcher';
 
 
+
 function App() {
   // const [count, setCount] = useState(0)
 
   const dataFetcherOutput = DataFetcher();
+  const MAX = 25;
 
   return (
     <Grid container spacing={5} justifyContent="center" alignItems="center">
@@ -78,10 +80,33 @@ function App() {
       </Grid>
 
       {/* Gráfico */}
-      <Grid size={{ xs: 6, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}><ChartUI /></Grid>
+      <Grid size={{ xs: 6, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}>
+
+        {/* Indicadores con datos obtenidos */}
+
+        {dataFetcherOutput.loading && <p>Cargando datos...</p>}
+        {dataFetcherOutput.error && <p>Error: {dataFetcherOutput.error}</p>}
+        {dataFetcherOutput.data && (
+          <ChartUI
+            time={dataFetcherOutput.data?.hourly.time.slice(0,MAX)}
+            temperature_2m={dataFetcherOutput.data?.hourly.temperature_2m.slice(0,MAX)}
+            wind_speed_10m={dataFetcherOutput.data?.hourly.wind_speed_10m.slice(0,MAX)}
+          />
+        )}
+
+      </Grid>
 
       {/* Tabla */}
-      <Grid size={{ xs: 6, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}><TableUI /></Grid>
+      <Grid size={{ xs: 6, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}>
+        {dataFetcherOutput.loading && <p>Cargando datos...</p>}
+        {dataFetcherOutput.error && <p>Error: {dataFetcherOutput.error}</p>}
+        {dataFetcherOutput.data && (
+          <TableUI
+            time={dataFetcherOutput.data?.hourly.time.slice(0,MAX)}
+            temperature_2m={dataFetcherOutput.data?.hourly.temperature_2m.slice(0,MAX)}
+            wind_speed_10m={dataFetcherOutput.data?.hourly.wind_speed_10m.slice(0,MAX)} />
+        )}
+      </Grid>
 
       {/* Información adicional */}
       <Grid size={{ xs: 12, md: 12 }}>Elemento: Información adicional</Grid>

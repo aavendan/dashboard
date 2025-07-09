@@ -1,24 +1,20 @@
 import { LineChart } from '@mui/x-charts/LineChart';
 import Typography from '@mui/material/Typography';
+import type { Hourly } from '../types/DashboardTypes';
 
-const arrValues1 = [4000, 3000, 2000, 2780, 1890, 2390, 3490];
-const arrValues2 = [2400, 1398, 9800, 3908, 4800, 3800, 4300];
-const arrLabels = ['A','B','C','D','E','F','G'];
-
-
-export default function ChartUI() {
+export default function ChartUI( props: Hourly ) {
    return (
       <>
          <Typography variant="h5" component="div">
-            Chart arrLabels vs arrValues1 & arrValues2
+            Tiempo vs Temperatura 2m (°C) & Velocidad del viento 10m (km/h)
          </Typography>
          <LineChart
             height={300}
             series={[
-               { data: arrValues1, label: 'value1'},
-               { data: arrValues2, label: 'value2'},
+               { data: props.temperature_2m, label: 'Temperatura 2m (°C)'},
+               { data: props.wind_speed_10m, label: 'Velocidad del viento 10m (km/h)'},
             ]}
-            xAxis={[{ scaleType: 'point', data: arrLabels }]}
+            xAxis={[{ scaleType: 'point', data: props.time }]}
          />
       </>
    );
