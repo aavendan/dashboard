@@ -4,13 +4,17 @@ import Select, { type SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
 
+interface SelectorUIProps {
+    onChange: (value: string) => void;
+}
 
-export default function SelectorUI() {
+export default function SelectorUI( props : SelectorUIProps ) {
 
     const [cityInput, setCityInput] = useState('');
 
     const handleChange = (event: SelectChangeEvent<string>) => {
         setCityInput(event.target.value)
+        props.onChange(event.target.value);
     };
 
     return (

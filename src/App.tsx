@@ -1,4 +1,4 @@
-// import { useState } from 'react'
+import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css'
@@ -16,9 +16,8 @@ import DataFetcher from './functions/DataFetcher';
 
 
 function App() {
-  // const [count, setCount] = useState(0)
-
-  const dataFetcherOutput = DataFetcher();
+  const [city, setCity] = useState("guayaquil")
+  const dataFetcherOutput = DataFetcher(city);
   const MAX = 25;
 
   return (
@@ -36,7 +35,7 @@ function App() {
 
       {/* Selector */}
       <Grid size={{ xs: 12, md: 3 }}>
-        <SelectorUI />
+        <SelectorUI onChange={setCity} />
       </Grid>
 
       {/* Indicadores */}
