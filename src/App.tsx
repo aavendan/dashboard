@@ -6,9 +6,11 @@ import { Grid } from '@mui/material';
 import HeaderUI from './components/HeaderUI';
 import AlertUI from './components/AlertUI';
 import SelectorUI from './components/SelectorUI';
-import useFetchData from './hooks/useFetchData';
-
+import ChartUI from './components/ChartUI';
+import TableUI from './components/TableUI';
 import IndicatorUI from './components/IndicatorUI';
+
+import useFetchData from './hooks/useFetchData';
 
 function App() {
 
@@ -77,10 +79,20 @@ function App() {
       </Grid>
 
       {/* Gráfico */}
-      <Grid size={{ xs: 12, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}>Elemento: Gráfico</Grid>
+      <Grid size={{ xs: 12, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}>
+        {dataFetcherOutput &&
+            (<ChartUI
+              temperatureData={dataFetcherOutput.hourly.temperature_2m}
+              windSpeedData={dataFetcherOutput.hourly.wind_speed_10m}
+              timeData={dataFetcherOutput.hourly.time} />)
+        }
+        { !dataFetcherOutput && <p>Cargando datos...</p> }
+      </Grid>
 
       {/* Tabla */}
-      <Grid size={{ xs: 12, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}>Elemento: Tabla</Grid>
+      <Grid size={{ xs: 12, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}>
+        <TableUI />
+      </Grid>
 
       {/* Información adicional */}
       <Grid size={12}>Elemento: Información adicional</Grid>
